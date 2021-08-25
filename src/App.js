@@ -1,25 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
+import React, {useContext} from 'react';
 
-function App() {
+import ResizeContext from "./context/resize-context";
+
+import {MODES} from "./hooks/use-responsive";
+
+const App = () => {
+  const mode = useContext(ResizeContext);
+  /*useEffect(() => {
+    console.log(mode);
+  }, [mode]);*/
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <app>
+        {mode === MODES[0] && <div>Show on mobile</div>}
+        {mode === MODES[1] && <div>Show on tablet</div>}
+        {mode === MODES[2] && <div>Show on desktop</div>}
+      </app>
   );
-}
+};
 
 export default App;
